@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>汉字 · Flashcards</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="frame">
+    <header class="masthead">
+      <span class="lantern">🏮</span>
+      <div class="titles">
+        <div class="title-zh">汉字卡片</div>
+        <h1>Flashcards de Chinês</h1>
+      </div>
+      <span class="lantern">🏮</span>
+    </header>
+
+    <div class="hint">
+      <span><kbd>Espaço</kbd> virar</span>
+      <span><kbd>→</kbd> pular</span>
+      <span><kbd>↓</kbd> ouvir</span>
+    </div>
+
+    <div class="card" id="card">
+      <div class="seal">学</div>
+      <div class="hanzi" id="hanzi">—</div>
+      <div class="pinyin" id="pinyin"></div>
+      <div class="traducao" id="traducao"></div>
+    </div>
+
+    <div class="buttons">
+      <button id="speak" title="Ouvir a pronúncia (↓)">🔊</button>
+      <button id="flip">Virar</button>
+      <button id="skip">Pular ⟳</button>
+    </div>
+
+    <div class="counter" id="counter"></div>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

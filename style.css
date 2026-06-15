@@ -1,0 +1,236 @@
+:root {
+  --red: #c1272d;        /* vermelho chinês (中国红) */
+  --red-deep: #6e1316;   /* fundo vermelho-laca */
+  --gold: #e8c170;       /* dourado de destaque */
+  --gold-soft: #c9a24a;
+  --cream: #f6efda;      /* papel-arroz do card */
+  --cream-edge: #ecdfba;
+  --ink: #2a221b;        /* tinta dos hanzi */
+  --ink-soft: #6b513a;   /* tradução */
+  --paper-text: #f3e6c8; /* texto claro sobre o vermelho */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: radial-gradient(circle at 50% -10%, #93211f 0%, #6e1316 58%, #531013 100%);
+  color: var(--paper-text);
+  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* Textura sutil de losangos sobre o fundo vermelho */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.022) 0 2px, transparent 2px 22px),
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.022) 0 2px, transparent 2px 22px);
+}
+
+/* Moldura dourada de borda dupla */
+.frame {
+  position: relative;
+  z-index: 1;
+  width: min(560px, 94vw);
+  padding: 34px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid var(--gold);
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.10);
+  box-shadow:
+    inset 0 0 0 1px rgba(232, 193, 112, 0.45),
+    0 0 0 6px rgba(0, 0, 0, 0.16),
+    0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* Cabeçalho com lanternas + título */
+.masthead {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.lantern {
+  font-size: 1.7rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.titles { text-align: center; }
+
+.title-zh {
+  font-family: "Ma Shan Zheng", "Kaiti SC", "STKaiti", "KaiTi", cursive, serif;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--gold);
+  letter-spacing: 6px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+h1 {
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--paper-text);
+  opacity: 0.82;
+  margin-top: 8px;
+}
+
+/* Atalhos de teclado */
+.hint {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px 18px;
+  color: var(--paper-text);
+  opacity: 0.9;
+  font-family: -apple-system, "Segoe UI", Helvetica, sans-serif;
+  font-size: 0.85rem;
+  margin: 20px 0 26px;
+}
+
+.hint span { display: inline-flex; align-items: center; gap: 7px; }
+
+.hint kbd {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--gold);
+  border-bottom-width: 2px;
+  border-radius: 7px;
+  padding: 3px 9px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--paper-text);
+  line-height: 1.3;
+}
+
+/* Card cor de papel-arroz */
+.card {
+  position: relative;
+  width: min(420px, 100%);
+  min-height: 310px;
+  padding: 42px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--cream-edge) 100%);
+  border: 1px solid var(--gold-soft);
+  border-radius: 10px;
+  box-shadow:
+    inset 0 0 0 1px rgba(193, 39, 45, 0.16),
+    inset 0 0 30px rgba(180, 140, 80, 0.18),
+    0 16px 38px rgba(0, 0, 0, 0.42);
+  transition: transform 0.15s ease;
+}
+
+.card:active { transform: scale(0.99); }
+
+/* Selo vermelho (印章) no canto */
+.seal {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--red);
+  color: #fff;
+  font-family: "Ma Shan Zheng", "Kaiti SC", "STKaiti", serif;
+  font-size: 1.6rem;
+  border-radius: 7px;
+  box-shadow: 0 2px 7px rgba(110, 19, 22, 0.4);
+  transform: rotate(-6deg);
+  opacity: 0.92;
+  user-select: none;
+}
+
+.hanzi {
+  font-family: "Noto Serif SC", "Kaiti SC", "STKaiti", "KaiTi", "Songti SC", "SimSun", serif;
+  font-size: 5.6rem;
+  font-weight: 600;
+  line-height: 1.05;
+  color: var(--ink);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.pinyin {
+  color: var(--red);
+  font-size: 1.8rem;
+  margin-top: 16px;
+  min-height: 1.8rem;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.traducao {
+  color: var(--ink-soft);
+  font-size: 1.3rem;
+  font-style: italic;
+  margin-top: 8px;
+  min-height: 1.3rem;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.revealed .pinyin,
+.revealed .traducao { opacity: 1; }
+
+/* Botões */
+.buttons {
+  display: flex;
+  gap: 14px;
+  margin-top: 26px;
+  align-items: center;
+}
+
+button {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: 1px solid var(--gold);
+  border-radius: 10px;
+  padding: 13px 28px;
+  cursor: pointer;
+  transition: transform 0.12s ease, filter 0.15s ease, background 0.15s ease;
+}
+
+button:hover { filter: brightness(1.07); transform: translateY(-1px); }
+button:disabled { opacity: 0.6; cursor: default; filter: none; transform: none; }
+
+#flip { background: var(--red); color: #fff5e6; }
+#skip { background: transparent; color: var(--gold); }
+
+#speak {
+  background: var(--gold);
+  color: var(--red-deep);
+  padding: 13px 16px;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+#speak.speaking { background: #fff; }
+
+.counter {
+  font-family: -apple-system, "Segoe UI", Helvetica, sans-serif;
+  color: var(--paper-text);
+  opacity: 0.78;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+  margin-top: 20px;
+}
