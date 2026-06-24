@@ -6,7 +6,7 @@
   <title>汉字 · Flashcards</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,26 +20,47 @@
       <span class="lantern">🏮</span>
     </header>
 
-    <div class="hint">
-      <span><kbd>Espaço</kbd> virar</span>
-      <span><kbd>→</kbd> pular</span>
-      <span><kbd>↓</kbd> ouvir</span>
-    </div>
+    <!-- HOME SCREEN: deck selection -->
+    <section id="home" class="screen">
+      <p class="screen-sub">Escolha um bloco para estudar</p>
+      <div class="decks" id="decks"></div>
+    </section>
 
-    <div class="card" id="card">
-      <div class="seal">学</div>
-      <div class="hanzi" id="hanzi">—</div>
-      <div class="pinyin" id="pinyin"></div>
-      <div class="traducao" id="traducao"></div>
-    </div>
+    <!-- STUDY SCREEN -->
+    <section id="study" class="screen hidden">
+      <div class="study-bar">
+        <button id="back" class="ghost">← Blocos</button>
+        <span class="deck-label" id="deckLabel"></span>
+        <label class="toggle" title="Ouça primeiro; vire para revelar">
+          <input type="checkbox" id="audioToggle">
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span class="toggle-label">Modo Áudio</span>
+        </label>
+      </div>
 
-    <div class="buttons">
-      <button id="speak" title="Ouvir a pronúncia (↓)">🔊</button>
-      <button id="flip">Virar</button>
-      <button id="skip">Pular ⟳</button>
-    </div>
+      <div class="hint">
+        <span><kbd>←</kbd> anterior</span>
+        <span><kbd>Espaço</kbd> virar</span>
+        <span><kbd>→</kbd> pular</span>
+        <span><kbd>↓</kbd> ouvir</span>
+      </div>
 
-    <div class="counter" id="counter"></div>
+      <div class="card" id="card">
+        <div class="emoji" id="emoji"></div>
+        <div class="hanzi" id="hanzi">—</div>
+        <div class="pinyin" id="pinyin"></div>
+        <div class="translation" id="translation"></div>
+      </div>
+
+      <div class="buttons">
+        <button id="speak" title="Ouvir a pronúncia (↓)">🔊</button>
+        <button id="prev">⟲ Anterior</button>
+        <button id="flip">Virar</button>
+        <button id="skip">Pular ⟳</button>
+      </div>
+
+      <div class="counter" id="counter"></div>
+    </section>
   </main>
 
   <script src="data.js"></script>
