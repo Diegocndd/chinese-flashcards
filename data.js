@@ -158,6 +158,19 @@ const BIBLE = [
   { hanzi: "启示录",   pinyin: "qǐ shì lù",    translation: "Apocalipse",    emoji: "🔥" },
 ];
 
+// --- Deck: Colors ---
+const COLORS = [
+  { hanzi: "白色", pinyin: "bái sè",   translation: "branco",   emoji: "⚪" },
+  { hanzi: "黑色", pinyin: "hēi sè",   translation: "preto",    emoji: "⚫" },
+  { hanzi: "红色", pinyin: "hóng sè",  translation: "vermelho", emoji: "🔴" },
+  { hanzi: "绿色", pinyin: "lǜ sè",    translation: "verde",    emoji: "🟢" },
+  { hanzi: "蓝色", pinyin: "lán sè",   translation: "azul",     emoji: "🔵" },
+  { hanzi: "黄色", pinyin: "huáng sè", translation: "amarelo",  emoji: "🟡" },
+  { hanzi: "棕色", pinyin: "zōng sè",  translation: "marrom",   emoji: "🟤" },
+  { hanzi: "灰色", pinyin: "huī sè",   translation: "cinza",    emoji: "⚫" },
+  { hanzi: "粉色", pinyin: "fěn sè",   translation: "rosa",     emoji: "🌸" },
+];
+
 // --- Deck: Phrases (sentences using the General vocabulary) ---
 const PHRASES = [
   { hanzi: "我是学生。",        pinyin: "Wǒ shì xuéshēng.",        translation: "Eu sou estudante." },
@@ -228,4 +241,5 @@ const DECKS = [
   { id: "phrases",   name: "Frases",    nameZh: "句子",  desc: "Sentenças variadas",  cards: PHRASES },
   { id: "phrases2",  name: "Frases II", nameZh: "句子二", desc: "Frases do Geral II",  cards: PHRASES_2 },
   { id: "bible",     name: "Bíblia",    nameZh: "圣经",  desc: "Vocabulário bíblico", cards: BIBLE },
+  { id: "colors",    name: "Cores",     nameZh: "颜色",  desc: "As cores",            cards: COLORS },
 ];
