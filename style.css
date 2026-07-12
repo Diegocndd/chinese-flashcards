@@ -232,6 +232,31 @@ button:disabled { opacity: 0.6; cursor: default; filter: none; transform: none; 
   margin-top: 20px;
 }
 
+/* Per-card frequency controls */
+.freq {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.freq button {
+  padding: 7px 14px;
+  font-size: 1rem;
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold-soft);
+}
+
+.freq-label {
+  font-family: -apple-system, "Segoe UI", Helvetica, sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+  color: var(--paper-text);
+  min-width: 96px;
+  text-align: center;
+}
+
 /* --- Screens (home / study) --- */
 .screen {
   width: 100%;

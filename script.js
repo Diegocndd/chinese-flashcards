@@ -18,9 +18,14 @@ const skipBtn = document.getElementById("skip");
 const prevBtn = document.getElementById("prev");
 const speakBtn = document.getElementById("speak");
 const audioToggle = document.getElementById("audioToggle");
+const freqUpBtn = document.getElementById("freqUp");
+const freqDownBtn = document.getElementById("freqDown");
+const freqLabelEl = document.getElementById("freqLabel");
 const counterEl = document.getElementById("counter");
 
 const HISTORY_LIMIT = 40;   // how many previous cards we keep
+const FREQ_MIN = 0.25;      // rarest a card can get
+const FREQ_MAX = 4;         // most frequent a card can get
 
 let cards = [];        // deck currently being studied
 let current = null;
@@ -28,6 +33,8 @@ let flipped = false;
 let audioMode = false; // hear first, reveal everything on flip
 let history = [];      // cards already seen, in order (up to HISTORY_LIMIT)
 let index = -1;        // current position within history
+// Per-card draw weights for this session only (reset on refresh). Default 1.
+let freqWeights = new Map();
 
 // --- Audio: uses the browser's native Web Speech API (no libs). ---
 const ttsSupported = "speechSynthesis" in window;
@@ -118,6 +125,7 @@ function showCard(c) {
   translationEl.textContent = "";
   // Emoji is set now but stays hidden (via CSS) until the card is revealed.
   emojiEl.textContent = c.emoji || "";
+  updateFreqUI();
   flipBtn.textContent = "Virar";
   flipBtn.disabled = false;
   if (audioMode) {
@@ -136,14 +144,40 @@ function updatePrevState() {
   prevBtn.disabled = index <= 0;
 }
 
-// Picks a random card, without repeating the current one right away.
+// Current draw weight of a card (default 1).
+function weightOf(c) {
+  return freqWeights.get(c) ?? 1;
+}
+
+// Picks a random card weighted by per-card frequency, avoiding an immediate
+// repeat of the current card.
 function pickRandomCard() {
   if (cards.length <= 1) return cards[0];
-  let choice;
-  do {
-    choice = cards[Math.floor(Math.random() * cards.length)];
-  } while (choice === current);
-  return choice;
+  const pool = cards.filter((c) => c !== current);
+  const candidates = pool.length ? pool : cards;
+  const total = candidates.reduce((sum, c) => sum + weightOf(c), 0);
+  let r = Math.random() * total;
+  for (const c of candidates) {
+    r -= weightOf(c);
+    if (r < 0) return c;
+  }
+  return candidates[candidates.length - 1]; // floating-point fallback
+}
+
+// Updates the frequency label and disables the buttons at the limits.
+function updateFreqUI() {
+  const w = current ? weightOf(current) : 1;
+  freqLabelEl.textContent = w === 1 ? "freq. normal" : `freq. ×${w}`;
+  freqUpBtn.disabled = !current || w >= FREQ_MAX;
+  freqDownBtn.disabled = !current || w <= FREQ_MIN;
+}
+
+// Multiplies the current card's weight (capped to [FREQ_MIN, FREQ_MAX]).
+function changeFreq(factor) {
+  if (!current) return;
+  const w = Math.min(FREQ_MAX, Math.max(FREQ_MIN, weightOf(current) * factor));
+  freqWeights.set(current, w);
+  updateFreqUI();
 }
 
 // Goes forward: if there are cards ahead in history, walk through them;
@@ -192,6 +226,8 @@ skipBtn.addEventListener("click", nextCard);
 prevBtn.addEventListener("click", prevCard);
 speakBtn.addEventListener("click", speak);
 backBtn.addEventListener("click", goHome);
+freqUpBtn.addEventListener("click", () => changeFreq(2));
+freqDownBtn.addEventListener("click", () => changeFreq(0.5));
 
 // Audio mode: when toggled, re-show the current card in the new mode.
 audioToggle.addEventListener("change", () => {
@@ -215,6 +251,10 @@ document.addEventListener("keydown", (e) => {
   } else if (e.code === "ArrowDown") {
     e.preventDefault();
     speak();
+  } else if (e.key === "+" || e.key === "=") {
+    changeFreq(2);
+  } else if (e.key === "-" || e.key === "_") {
+    changeFreq(0.5);
   } else if (e.code === "Escape") {
     goHome();
   }

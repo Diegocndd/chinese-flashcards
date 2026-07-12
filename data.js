@@ -135,6 +135,27 @@ const GENERAL_2 = [
   { hanzi: "饺子",   pinyin: "jiǎo zi",      translation: "guioza",   emoji: "🥟" },
   { hanzi: "奶奶",   pinyin: "nǎi nai",      translation: "vovó (paterno)", emoji: "👵" },
   { hanzi: "爷爷",   pinyin: "yé ye",        translation: "vovô (materno)", emoji: "👴" },
+  { hanzi: "来",     pinyin: "lái",          translation: "vir",              emoji: "🙋" },
+  { hanzi: "回",     pinyin: "huí",          translation: "voltar",           emoji: "↩️" },
+  { hanzi: "去",     pinyin: "qù",           translation: "ir",               emoji: "➡️" },
+  { hanzi: "钱",     pinyin: "qián",         translation: "dinheiro",         emoji: "💰" },
+  { hanzi: "能",     pinyin: "néng",         translation: "poder (ser capaz)" },
+  { hanzi: "知道",   pinyin: "zhī dào",      translation: "saber",            emoji: "💡" },
+  { hanzi: "游泳",   pinyin: "yóu yǒng",     translation: "nadar",            emoji: "🏊" },
+  { hanzi: "大",     pinyin: "dà",           translation: "grande",           emoji: "🐘" },
+  { hanzi: "小",     pinyin: "xiǎo",         translation: "pequeno",          emoji: "🐭" },
+];
+
+// --- Deck: Bible (Bible-related vocabulary) ---
+const BIBLE = [
+  { hanzi: "圣经",     pinyin: "shèng jīng",   translation: "Bíblia",        emoji: "📖" },
+  { hanzi: "上帝",     pinyin: "shàng dì",     translation: "Deus",          emoji: "✝️" },
+  { hanzi: "耶稣基督", pinyin: "yē sū jī dū",  translation: "Jesus Cristo",  emoji: "✝️" },
+  { hanzi: "福音",     pinyin: "fú yīn",       translation: "Evangelho",     emoji: "🕊️" },
+  { hanzi: "创世记",   pinyin: "chuàng shì jì", translation: "Gênesis",      emoji: "🌍" },
+  { hanzi: "出埃及记", pinyin: "chū āi jí jì", translation: "Êxodo",         emoji: "🏜️" },
+  { hanzi: "诗篇",     pinyin: "shī piān",     translation: "Salmos",        emoji: "🎶" },
+  { hanzi: "启示录",   pinyin: "qǐ shì lù",    translation: "Apocalipse",    emoji: "🔥" },
 ];
 
 // --- Deck: Phrases (sentences using the General vocabulary) ---
@@ -206,4 +227,5 @@ const DECKS = [
   { id: "numbers",   name: "Números",   nameZh: "数字",  desc: "De 1 a 10",           cards: NUMBERS },
   { id: "phrases",   name: "Frases",    nameZh: "句子",  desc: "Sentenças variadas",  cards: PHRASES },
   { id: "phrases2",  name: "Frases II", nameZh: "句子二", desc: "Frases do Geral II",  cards: PHRASES_2 },
+  { id: "bible",     name: "Bíblia",    nameZh: "圣经",  desc: "Vocabulário bíblico", cards: BIBLE },
 ];
