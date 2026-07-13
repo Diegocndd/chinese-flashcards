@@ -248,4 +248,6 @@ const DECKS = [
   { id: "phrases2",  name: "Frases II", nameZh: "句子二", desc: "Frases do Geral II",  cards: PHRASES_2 },
   { id: "bible",     name: "Bíblia",    nameZh: "圣经",  desc: "Vocabulário bíblico", cards: BIBLE },
   { id: "colors",    name: "Cores",     nameZh: "颜色",  desc: "As cores",            cards: COLORS },
+  // PINYIN_SYLLABLES comes from pinyin_data.js (loaded before this file).
+  { id: "pinyin",    name: "Tabela Pinyin", nameZh: "拼音", desc: "O som de cada sílaba", cards: PINYIN_SYLLABLES },
 ];

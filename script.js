@@ -55,11 +55,13 @@ if (ttsSupported) {
   speakBtn.style.display = "none"; // unsupported browser: hide the button
 }
 
-// Reads the current hanzi out loud (TTS pronounces the characters with tones).
+// Reads the current card out loud (TTS pronounces the characters with tones).
+// Cards may carry a `tts` field with the text to speak when the visible text
+// isn't speakable (e.g. pinyin syllables map to a hanzi with that reading).
 function speak() {
   if (!ttsSupported || !current) return;
   speechSynthesis.cancel(); // stop any ongoing speech
-  const u = new SpeechSynthesisUtterance(current.hanzi);
+  const u = new SpeechSynthesisUtterance(current.tts || current.hanzi);
   u.lang = "zh-CN";
   if (zhVoice) u.voice = zhVoice;
   u.rate = 0.9; // a bit slower, helps learning
@@ -106,6 +108,13 @@ function goHome() {
 // Scales the hanzi by length: a single word is large, a sentence gets
 // smaller and wraps across several lines.
 function sizeHanzi(text) {
+  // Latin text (pinyin syllables) is narrow, so it can stay large even when
+  // it has several letters.
+  if (/^[a-zü]+$/i.test(text)) {
+    hanziEl.style.fontSize = "4.6rem";
+    hanziEl.style.lineHeight = "1.1";
+    return;
+  }
   const n = text.length;
   let size, lh;
   if (n <= 3) { size = "5.6rem"; lh = "1.05"; }
