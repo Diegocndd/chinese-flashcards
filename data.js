@@ -144,6 +144,12 @@ const GENERAL_2 = [
   { hanzi: "游泳",   pinyin: "yóu yǒng",     translation: "nadar",            emoji: "🏊" },
   { hanzi: "大",     pinyin: "dà",           translation: "grande",           emoji: "🐘" },
   { hanzi: "小",     pinyin: "xiǎo",         translation: "pequeno",          emoji: "🐭" },
+  { hanzi: "冷",     pinyin: "lěng",         translation: "frio",             emoji: "🥶" },
+  { hanzi: "热",     pinyin: "rè",           translation: "quente",           emoji: "🥵" },
+  { hanzi: "漂亮",   pinyin: "piào liang",   translation: "bonito",           emoji: "😍" },
+  { hanzi: "丑",     pinyin: "chǒu",         translation: "feio",             emoji: "🤢" },
+  { hanzi: "高兴",   pinyin: "gāo xìng",     translation: "feliz",            emoji: "😄" },
+  { hanzi: "伤心",   pinyin: "shāng xīn",    translation: "triste",           emoji: "😢" },
 ];
 
 // --- Deck: Bible (Bible-related vocabulary) ---
