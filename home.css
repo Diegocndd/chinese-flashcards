@@ -1,0 +1,231 @@
+:root {
+  --bg: #0b0d14;
+  --text: #eef0f6;
+  --text-dim: rgba(238, 240, 246, 0.55);
+  --card-bg: rgba(255, 255, 255, 0.035);
+  --card-border: rgba(255, 255, 255, 0.09);
+  --zh-a: #ff5a5f;
+  --zh-b: #ffb45a;
+  --en-a: #5aa2ff;
+  --en-b: #7ce0d3;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Outfit", -apple-system, "Segoe UI", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  overflow-x: hidden;
+}
+
+/* Soft ambient glows behind everything */
+.glow {
+  position: fixed;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  filter: blur(110px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow-warm {
+  top: -180px;
+  left: -140px;
+  background: radial-gradient(circle, rgba(255, 90, 95, 0.16), transparent 65%);
+}
+
+.glow-cool {
+  bottom: -200px;
+  right: -160px;
+  background: radial-gradient(circle, rgba(90, 162, 255, 0.13), transparent 65%);
+}
+
+.home {
+  position: relative;
+  z-index: 1;
+  width: min(680px, 100%);
+  text-align: center;
+}
+
+/* --- Header --- */
+h1 {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(2.4rem, 7vw, 3.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  animation: rise 0.7s ease both;
+}
+
+h1 em {
+  font-style: italic;
+  background: linear-gradient(100deg, var(--zh-b), var(--zh-a));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.sub {
+  margin-top: 14px;
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--text-dim);
+  letter-spacing: 0.3px;
+  animation: rise 0.7s 0.08s ease both;
+}
+
+/* --- Language cards --- */
+.langs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 44px;
+}
+
+.lang {
+  --accent-a: #ffffff;
+  --accent-b: #ffffff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 24px 30px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 22px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  text-decoration: none;
+  color: var(--text);
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.3, 1.2),
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+  animation: rise 0.7s ease both;
+}
+
+.lang-zh { --accent-a: var(--zh-a); --accent-b: var(--zh-b); animation-delay: 0.16s; }
+.lang-en { --accent-a: var(--en-a); --accent-b: var(--en-b); animation-delay: 0.24s; }
+
+/* Accent wash that fades in on hover */
+.lang::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 90% at 50% -20%, color-mix(in srgb, var(--accent-a) 16%, transparent), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lang > * { position: relative; }
+
+a.lang:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--accent-a) 45%, var(--card-border));
+  box-shadow:
+    0 22px 50px -18px color-mix(in srgb, var(--accent-a) 35%, transparent),
+    0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+a.lang:hover::before { opacity: 1; }
+
+.lang-glyph {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 4.2rem;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  transition: transform 0.3s ease;
+}
+
+a.lang:hover .lang-glyph { transform: scale(1.08); }
+
+.lang-name {
+  margin-top: 20px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.lang-desc {
+  margin-top: 6px;
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+}
+
+.lang-cta {
+  margin-top: 26px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--accent-a) 80%, var(--text));
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.arrow {
+  transition: transform 0.25s ease;
+  font-weight: 400;
+}
+
+a.lang:hover .arrow { transform: translateX(5px); }
+
+/* Disabled (English) */
+.lang-disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.lang-disabled .lang-glyph {
+  background: linear-gradient(135deg, rgba(238, 240, 246, 0.5), rgba(238, 240, 246, 0.25));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.lang-disabled .lang-cta { color: var(--text-dim); }
+
+.badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  h1, .sub, .lang { animation: none; }
+  .lang, .lang-glyph, .arrow { transition: none; }
+}
+
+@media (max-width: 480px) {
+  .langs { grid-template-columns: 1fr; }
+  .lang { padding: 32px 24px 26px; }
+}

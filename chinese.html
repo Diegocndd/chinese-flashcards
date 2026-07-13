@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>汉字 · Flashcards</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="frame">
+    <header class="masthead">
+      <span class="lantern">🏮</span>
+      <div class="titles">
+        <div class="title-zh">汉字卡片</div>
+        <h1>Flashcards de Chinês</h1>
+      </div>
+      <span class="lantern">🏮</span>
+    </header>
+
+    <!-- HOME SCREEN: deck selection -->
+    <section id="home" class="screen">
+      <p class="screen-sub">Escolha um bloco para estudar</p>
+      <div class="decks" id="decks"></div>
+    </section>
+
+    <!-- STUDY SCREEN -->
+    <section id="study" class="screen hidden">
+      <div class="study-bar">
+        <button id="back" class="ghost">← Blocos</button>
+        <span class="deck-label" id="deckLabel"></span>
+        <label class="toggle" title="Ouça primeiro; vire para revelar">
+          <input type="checkbox" id="audioToggle">
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span class="toggle-label">Modo Áudio</span>
+        </label>
+      </div>
+
+      <div class="hint">
+        <span><kbd>←</kbd> anterior</span>
+        <span><kbd>Espaço</kbd> virar</span>
+        <span><kbd>→</kbd> pular</span>
+        <span><kbd>↓</kbd> ouvir</span>
+      </div>
+
+      <div class="card" id="card">
+        <div class="emoji" id="emoji"></div>
+        <div class="hanzi" id="hanzi">—</div>
+        <div class="pinyin" id="pinyin"></div>
+        <div class="translation" id="translation"></div>
+      </div>
+
+      <div class="buttons">
+        <button id="speak" title="Ouvir a pronúncia (↓)">🔊</button>
+        <button id="prev">⟲ Anterior</button>
+        <button id="flip">Virar</button>
+        <button id="skip">Pular ⟳</button>
+      </div>
+
+      <div class="freq">
+        <button id="freqDown" title="Esta palavra aparece menos vezes (−)">➖</button>
+        <span class="freq-label" id="freqLabel">freq. normal</span>
+        <button id="freqUp" title="Esta palavra aparece mais vezes (+)">➕</button>
+      </div>
+
+      <div class="counter" id="counter"></div>
+    </section>
+  </main>
+
+  <script src="pinyin_data.js"></script>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
